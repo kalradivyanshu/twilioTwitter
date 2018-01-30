@@ -1,0 +1,35 @@
+<html>
+<head>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        input {
+            width: auto !important;
+        }
+        .loginForm {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class = "loginForm">
+        <h3> Aviral </h3>
+        <input type="text" placeholder="Phone Number" id = 'phone'><br>
+        <button id = "save">Save</button><br>
+        <span id="output"></span>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $("#save").on("click", function() {
+            var phone = $("#phone").val();
+            if(phone.length == 0)
+                return undefined;
+            $.get("/number?number="+phone).done(function(body){
+                $("#output").html(body);
+            });
+        });
+    </script>
+</body>
+</html>
