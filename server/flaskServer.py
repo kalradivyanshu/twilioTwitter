@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 import MySQLdb
 from redisConsumer import startConsumer
-db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="aviral")
+db = MySQLdb.connect(host="localhost", user="root", passwd="indicadls02", db="aviral")
 cur = db.cursor()
 app = Flask(__name__)
 
