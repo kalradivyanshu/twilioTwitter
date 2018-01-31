@@ -29,7 +29,7 @@ def poolRedis(sendSMS, Root, os, logger, retry):
     while True:
         root = Root()
         numbers = root.numbers
-        if(numbers == None):
+        if(numbers == None or numbers == []):
             continue
         for number in numbers:
             try:
@@ -38,6 +38,7 @@ def poolRedis(sendSMS, Root, os, logger, retry):
                 logger.error("Sending message failed.")
                 retry(number, logger, sendSMS)
         os.system("redis-cli DEL root.numbers")
+        root.numbers = []
         sleep(2)
 
 def startConsumer():
