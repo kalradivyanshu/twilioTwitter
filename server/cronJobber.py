@@ -2,8 +2,8 @@ import MySQLdb
 import sys, os
 from redisworks import Root
 import datetime
-
-
+from logger import Logger
+logger = Logger()
 try:
     now = datetime.datetime.now()
     if now.hour > 23 or now.hour < 7:
@@ -20,6 +20,6 @@ try:
         numbers = []
     numbers.append(phone)
     root.numbers = numbers
-    print("Pushed to redis " + str(phone))
+    logger.access("Cron: Pushed to redis " + str(phone))
 except Exception as e:
-    print("an error occured "+ str(e))
+    logger.error("Cron: an error occured "+ str(e))
